@@ -1,8 +1,9 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { BASE_URL } from './components/constants';
-import PorfileMaker from './components/Character';
+import ProfileMaker from './components/Character';
 import './App.css';
+import styled from "styled-components";
 
 
 const App = () => {
@@ -27,13 +28,22 @@ const App = () => {
         })
     }, [])
 
+    const Wrapper = styled.div`
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: center;
+      `;
 
   return (
     <div className="App">
       <h1 className="Header">Star Wars Characters</h1>
-      {starWarsChar && starWarsChar.results.map( chars => 
-        <ProfileMaker key={chars.id} chars={chars} />
-      )}
+      <Wrapper>
+        {
+          starWarsChar && starWarsChar.results.map( chars => 
+          <ProfileMaker key={chars.id} chars={chars} />)
+        }
+      </Wrapper>
     </div>
   );
 }
